@@ -6,7 +6,7 @@
 
 <html>
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
 		<title>Busqueda por nombre</title>
 	</head>
 	<body>
@@ -16,9 +16,9 @@
 		</div>
 		<div class="center">
 			<form action="/salsamagic" method="post">
-				<p>Introduzca el nombre de la carta:</p><br>
-				<input type="text" name="consultaNombre"><br>
-				<input type="submit" value="buscar">
+				<p>Introduzca el nombre de la carta:</p><br/>
+				<input type="text" name="consultaNombre"/><br/>
+				<input type="submit" value="buscar"/>
 			</form>
 		</div>
 		<div class="rightBar">

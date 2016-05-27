@@ -45,7 +45,7 @@ public class SalsaMagicServlet extends HttpServlet {
 		listPrueba = Cardify.loadName(req.getParameter("consultaNombre"));
         if(!listPrueba.isEmpty()){
         	prueba = listPrueba.get(0);
-	        req.setAttribute("card", prueba.getMultiverseCartaId());
+	        req.setAttribute("card", prueba);
 	        req.getRequestDispatcher("mostrarCarta.jsp").forward(req, resp);
         }else{
         	String vacio = "no se ha encontrado la carta";
