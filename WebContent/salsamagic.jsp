@@ -15,7 +15,7 @@
 		<div class="leftBar">
 		</div>
 		<div class="center">
-			<form action="/salsamagic" method="get">
+			<form action="/salsamagic" method="post">
 				<p>Introduzca el nombre de la carta:</p><br>
 				<input type="text" name="consultaNombre"><br>
 				<input type="submit" value="buscar">

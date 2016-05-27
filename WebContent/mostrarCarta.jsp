@@ -16,9 +16,9 @@
 		</div>
 		<div class="center">
 			<% if(request.getAttribute("card") != null){ %>
-			<p><% request.getParameter("card"); %></p><br>
+			<p><%=(request.getAttribute("card"))%> </p><br>
 			<% }else{ %>
-			<p><% request.getParameter("consultaNombre");%></p>
+			<p><%=(request.getAttribute("error"))%></p>
 			<% } %>
 		</div>
 		<div class="rightBar">
