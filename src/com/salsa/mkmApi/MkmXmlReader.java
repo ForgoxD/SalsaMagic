@@ -1,7 +1,7 @@
 package com.salsa.mkmApi;
 
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.StringReader;
 import java.util.ArrayList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -20,7 +20,7 @@ public class MkmXmlReader{
 			XMLReader reader = XMLReaderFactory.createXMLReader();
 			
 			reader.setContentHandler(new MkmXmlHandler(list));
-			reader.parse(new InputSource(new FileInputStream(datos)));
+			reader.parse(new InputSource(new StringReader(datos)));
 		}catch (SAXException e){  
 	       e.printStackTrace();  
 	    }catch (IOException e){  

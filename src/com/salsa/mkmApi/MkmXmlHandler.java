@@ -9,13 +9,13 @@ import com.salsa.card.Card;
 
 public class MkmXmlHandler extends DefaultHandler{
 	ArrayList<Card> cardList = null;
-	String valor = new String();
-	String cardName;
+	String valor = null;
+	String cardName = null;
 	Boolean isName = false;
-	String set;
-	String rarity;
-	Integer avgPrice;
-	Integer lowPrice;
+	String set = null;
+	String rarity = null;
+	Double avgPrice = null;
+	Double lowPrice = null;
 	
 	public MkmXmlHandler(ArrayList<Card> list){
 		this.cardList = list;
@@ -45,18 +45,32 @@ public class MkmXmlHandler extends DefaultHandler{
 			rarity = valor;
 		}
 		if(localName.equals("AVG")){
-			avgPrice = Integer.parseInt(valor);
+			if(valor != null && valor != ""){
+				avgPrice = Double.parseDouble(valor);
+			}
 		}
 		if(localName.equals("LOW")){
-			lowPrice = Integer.parseInt(valor);
+			if(valor != null && valor != ""){
+				lowPrice = Double.parseDouble(valor);
+			}
 		}
 		if(localName.equals("product")){
 			Card card = new Card();
-			card.setExpansion(set);
-			card.setRarity(rarity);
-			card.setNombreCarta(cardName);
-			card.setAvgValue(avgPrice);
-			card.setLowValue(lowPrice);
+			if(set != null){
+				card.setExpansion(set);
+			}
+			if(rarity != null){
+				card.setRarity(rarity);
+			}
+			if(cardName != null){
+				card.setNombreCarta(cardName);
+			}
+			if(avgPrice != null){
+				card.setAvgValue(avgPrice);
+			}
+			if(lowPrice != null){
+				card.setLowValue(lowPrice);
+			}
 			cardList.add(card);
 		}
 	}

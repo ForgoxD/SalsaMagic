@@ -12,6 +12,7 @@ import org.xml.sax.SAXException;
 import com.salsa.card.Card;
 import com.salsa.card.Cardify;
 import com.salsa.mkmApi.MkmApi;
+import com.salsa.mkmApi.MkmXmlReader;
 import com.salsa.mtgXml.MtgXmlReader;
 
 @SuppressWarnings("serial")
@@ -36,15 +37,22 @@ public class SalsaMagicServlet extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException{
 		Card prueba = null;
         ArrayList<Card> listPrueba = null;
+        ArrayList<Card> listMkm = null;
         MkmApi app = new MkmApi(this.mkmAppToken, this.mkmAppSecret, this.mkmAccessToken, this.mkmAccessTokenSecret);
         
-        if (app.request("https://www.mkmapi.eu/ws/v1.1/output.xml/products/" + req.getParameter("consultaNombre") + "/1/1/false")){
-			//app.responseContent();
-        }
-		
 		listPrueba = Cardify.loadName(req.getParameter("consultaNombre"));
-        if(!listPrueba.isEmpty()){
-        	prueba = listPrueba.get(0);
+        if (app.request("https://www.mkmapi.eu/ws/v1.1/output.xml/products/" + req.getParameter("consultaNombre") + "/1/1/false")){
+			try {
+				listMkm = MkmXmlReader.read(app.responseContent());
+			} catch (SAXException e) {
+				
+			}
+			prueba = listPrueba.get(0);
+			prueba.setAvgValue(listMkm.get(0).getAvgValue());
+			prueba.setLowValue(listMkm.get(0).getLowValue());
+        }
+        
+        if(prueba != null){
 	        req.setAttribute("card", prueba);
 	        req.getRequestDispatcher("mostrarCarta.jsp").forward(req, resp);
         }else{

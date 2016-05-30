@@ -12,8 +12,8 @@ public class Card {
 	@Index private String expansion = "vacio";
 	@Index private String rarity = "vacio";
 	private String Img = "vacio";
-	@Index private Integer AvgValue = -1;
-	@Index private Integer LowValue = -1;
+	@Index private Double AvgValue = -1.0;
+	@Index private Double LowValue = -1.0;
 	
 	public Card(){}
 	
@@ -47,16 +47,16 @@ public class Card {
 	public String getImg() {
 		return Img;
 	}
-	public Integer getAvgValue() {
+	public Double getAvgValue() {
 			return AvgValue;
 		}
-	public void setAvgValue(Integer avgValue) {
+	public void setAvgValue(Double avgValue) {
 		this.AvgValue = avgValue;
 	}
-	public Integer getLowValue() {
+	public Double getLowValue() {
 		return LowValue;
 	}
-	public void setLowValue(Integer lowValue) {
+	public void setLowValue(Double lowValue) {
 		this.LowValue = lowValue;
 	}
 }
