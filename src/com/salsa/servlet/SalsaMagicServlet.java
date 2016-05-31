@@ -40,12 +40,10 @@ public class SalsaMagicServlet extends HttpServlet {
         ArrayList<Card> listMkm = null;
         MkmApi app = new MkmApi(this.mkmAppToken, this.mkmAppSecret, this.mkmAccessToken, this.mkmAccessTokenSecret);
 
-		//listPrueba = Cardify.loadName(req.getParameter("consultaNombre"));
-		listPrueba = Cardify.loadName(req.getParameter("Dragon Broodmother"));
-        //if (app.request("https://www.mkmapi.eu/ws/v1.1/output.xml/products/" + req.getParameter("consultaNombre") + "/1/1/false")){
-        if (app.request("https://www.mkmapi.eu/ws/v1.1/output.xml/products/" + req.getParameter("Dragon Broodmother") + "/1/1/false")){
+        if (app.request("https://www.mkmapi.eu/ws/v1.1/output.xml/products/" + req.getParameter("consultaNombre") + "/1/1/false")){
 			try {
 				listMkm = MkmXmlReader.read(app.responseContent());
+				listPrueba = Cardify.loadName(req.getParameter("consultaNombre"));
 			} catch (SAXException e) {
 				
 			}
