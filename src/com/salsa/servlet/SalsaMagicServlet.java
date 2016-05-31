@@ -39,17 +39,21 @@ public class SalsaMagicServlet extends HttpServlet {
         ArrayList<Card> listPrueba = null;
         ArrayList<Card> listMkm = null;
         MkmApi app = new MkmApi(this.mkmAppToken, this.mkmAppSecret, this.mkmAccessToken, this.mkmAccessTokenSecret);
-        
-		listPrueba = Cardify.loadName(req.getParameter("consultaNombre"));
-        if (app.request("https://www.mkmapi.eu/ws/v1.1/output.xml/products/" + req.getParameter("consultaNombre") + "/1/1/false")){
+
+		//listPrueba = Cardify.loadName(req.getParameter("consultaNombre"));
+		listPrueba = Cardify.loadName(req.getParameter("Dragon Broodmother"));
+        //if (app.request("https://www.mkmapi.eu/ws/v1.1/output.xml/products/" + req.getParameter("consultaNombre") + "/1/1/false")){
+        if (app.request("https://www.mkmapi.eu/ws/v1.1/output.xml/products/" + req.getParameter("Dragon Broodmother") + "/1/1/false")){
 			try {
 				listMkm = MkmXmlReader.read(app.responseContent());
 			} catch (SAXException e) {
 				
 			}
-			prueba = listPrueba.get(0);
-			prueba.setAvgValue(listMkm.get(0).getAvgValue());
-			prueba.setLowValue(listMkm.get(0).getLowValue());
+			if(!listPrueba.isEmpty() && !listMkm.isEmpty()){
+				prueba = listPrueba.get(0);
+				prueba.setAvgValue(listMkm.get(0).getAvgValue());
+				prueba.setLowValue(listMkm.get(0).getLowValue());
+        	}
         }
         
         if(prueba != null){

@@ -23,7 +23,8 @@
 			<p>el valor medio de la carta es de <%=carta.getAvgValue()%>$</p><br/>
 			<p>el valor a la baja de la carta es de <%=carta.getLowValue()%>$</p><br/>
 			<% }else{ %>
-			<p><%=(request.getAttribute("error"))%></p>
+			<p><%=request.getAttribute("error")%></p>
+			<p><%=request.getParameter("consultaNombre")%></p>
 			<% } %>
 		</div>
 		<div class="rightBar">
