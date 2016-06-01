@@ -14,6 +14,7 @@ import com.salsa.card.Cardify;
 import com.salsa.mkmApi.MkmApi;
 import com.salsa.mkmApi.MkmXmlReader;
 import com.salsa.mtgXml.MtgXmlReader;
+import com.salsa.tratatexto.Tratatexto;
 
 @SuppressWarnings("serial")
 public class SalsaMagicServlet extends HttpServlet {
@@ -40,7 +41,7 @@ public class SalsaMagicServlet extends HttpServlet {
         ArrayList<Card> listMkm = null;
         MkmApi app = new MkmApi(this.mkmAppToken, this.mkmAppSecret, this.mkmAccessToken, this.mkmAccessTokenSecret);
 
-        if (app.request("https://www.mkmapi.eu/ws/v1.1/output.xml/products/" + req.getParameter("consultaNombre") + "/1/1/false")){
+        if (app.request("https://www.mkmapi.eu/ws/v1.1/output.xml/products/" + Tratatexto.treatUrl(req.getParameter("consultaNombre")) + "/1/1/false")){
 			try {
 				listMkm = MkmXmlReader.read(app.responseContent());
 				listPrueba = Cardify.loadName(req.getParameter("consultaNombre"));
