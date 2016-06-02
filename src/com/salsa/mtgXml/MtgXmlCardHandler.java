@@ -6,7 +6,7 @@ import org.xml.sax.helpers.DefaultHandler;
 
 import com.salsa.card.Card;
 
-public class MtgXmlHandler extends DefaultHandler{
+public class MtgXmlCardHandler extends DefaultHandler{
 	ArrayList<Card> cardList = null;
 	String valor = new String();
 	String cardName;
@@ -14,7 +14,7 @@ public class MtgXmlHandler extends DefaultHandler{
 	String rarity;
 	String id;
 	
-	public MtgXmlHandler(ArrayList<Card> list){
+	public MtgXmlCardHandler(ArrayList<Card> list){
 		this.cardList = list;
 	}
 	
