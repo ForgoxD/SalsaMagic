@@ -16,16 +16,24 @@
 		<div class="leftBar">
 		</div>
 		<div class="center">
-			<% if(request.getAttribute("card") != null){ %>
-			<% Card carta = (Card)request.getAttribute("card");%>
-			<p><%=carta.getNombreCarta()%> </p><br/>
-			<%=carta.getImg()%><br/>
-			<p>el valor medio de la carta es de <%=carta.getAvgValue()%>$</p><br/>
-			<p>el valor a la baja de la carta es de <%=carta.getLowValue()%>$</p><br/>
-			<% }else{ %>
-			<p><%=request.getAttribute("error")%></p>
-			<p><%=request.getParameter("consultaNombre")%></p>
-			<% } %>
+			<div class="buscaNombre">
+				<form action="/salsamagic" method="post">
+					<p>Introduzca el nombre de la carta:</p><br/>
+					<input type="text" name="consultaNombre"/><br/>
+					<input type="submit" value="buscar"/>
+				</form>
+			</div>
+			<div class="muestraCarta">
+				<% if(request.getAttribute("card") != null){ %>
+				<% Card carta = (Card)request.getAttribute("card");%>
+				<p><%=carta.getNombreCarta()%></p><br/>
+				<%=carta.getImg()%><br/>
+				<p>el valor medio de la carta es de <%=carta.getAvgValue()%>$</p><br/>
+				<p>el valor a la baja de la carta es de <%=carta.getLowValue()%>$</p><br/>
+				<% }else{ %>
+				<p><%=request.getAttribute("error")%></p>
+				<% } %>
+			</div>
 		</div>
 		<div class="rightBar">
 		</div>

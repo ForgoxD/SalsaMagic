@@ -30,7 +30,7 @@ public class Card {
 		return nombreCarta;
 	}
 	public void setNombreCarta(String nombreCarta) {
-		this.nombreCarta = nombreCarta;
+		this.nombreCarta = nombreCarta.toLowerCase();
 	}
 	public String getExpansion() {
 		return expansion;
