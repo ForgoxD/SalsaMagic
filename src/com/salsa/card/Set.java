@@ -6,8 +6,8 @@ import com.googlecode.objectify.annotation.Index;
 
 @Entity
 public class Set {
-	@Id @Index private String code = "vacio";
-	private String name = "vacio";
+	@Index private String code = "vacio";
+	@Id private String name = "vacio";
 	
 	public Set(){}
 	public String getName() {

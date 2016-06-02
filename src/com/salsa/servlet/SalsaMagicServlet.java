@@ -16,6 +16,7 @@ import com.salsa.card.Setify;
 import com.salsa.mkmApi.MkmApi;
 import com.salsa.mkmApi.MkmXmlReader;
 import com.salsa.mtgXml.MtgXmlReader;
+import com.salsa.tratamiento.Pairing;
 import com.salsa.tratamiento.Tratatexto;
 
 @SuppressWarnings("serial")
@@ -41,11 +42,10 @@ public class SalsaMagicServlet extends HttpServlet {
 	}
 	
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException{
-		Card aux = null;
-		Set setAux = null;
         ArrayList<Card> listCardXml = null;
-        ArrayList<Set>  listSetXml = null;
+        ArrayList<Set>  listSetXml = new ArrayList<Set>();
         ArrayList<Card> listMkm = null;
+        ArrayList<Card> listCards = new ArrayList<Card>();
         MkmApi app = new MkmApi(this.mkmAppToken, this.mkmAppSecret, this.mkmAccessToken, this.mkmAccessTokenSecret);
 
         if (app.request("https://www.mkmapi.eu/ws/v1.1/output.xml/products/" + Tratatexto.treatUrl(req.getParameter("consultaNombre").toLowerCase()) + "/1/1/false")){
@@ -56,14 +56,15 @@ public class SalsaMagicServlet extends HttpServlet {
 				
 			}
 			if(!listCardXml.isEmpty() && !listMkm.isEmpty()){
-				aux = listCardXml.get(0);
-				aux.setAvgValue(listMkm.get(0).getAvgValue());
-				aux.setLowValue(listMkm.get(0).getLowValue());
+				for(Card carta: listCardXml){
+					listSetXml.addAll(Setify.loadName(carta.getExpansion()));
+				}
+				listCards = Pairing.pair(listCardXml, listSetXml, listMkm);
         	}
         }
         
-        if(aux != null){
-	        req.setAttribute("card", aux);
+        if(!listCards.isEmpty()){
+	        req.setAttribute("cards", listCards);
 	        req.getRequestDispatcher("mostrarCarta.jsp").forward(req, resp);
         }else{
         	String vacio = "no se ha encontrado la carta";

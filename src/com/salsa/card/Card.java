@@ -7,7 +7,7 @@ import com.googlecode.objectify.annotation.Index;
 @Entity
 public class Card {
 	
-	@Id @Index private String multiverseCartaId = "vacio";
+	@Id private String multiverseCartaId = "vacio";
 	@Index private String nombreCarta = "vacio";
 	@Index private String expansion = "vacio";
 	@Index private String rarity = "vacio";
