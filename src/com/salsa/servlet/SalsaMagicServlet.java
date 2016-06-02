@@ -48,6 +48,7 @@ public class SalsaMagicServlet extends HttpServlet {
         ArrayList<Card> listCards = new ArrayList<Card>();
         MkmApi app = new MkmApi(this.mkmAppToken, this.mkmAppSecret, this.mkmAccessToken, this.mkmAccessTokenSecret);
 
+        app.setDebug(false);
         if (app.request("https://www.mkmapi.eu/ws/v1.1/output.xml/products/" + Tratatexto.treatUrl(req.getParameter("consultaNombre").toLowerCase()) + "/1/1/false")){
 			try {
 				listMkm = MkmXmlReader.read(app.responseContent());

@@ -11,10 +11,11 @@ public class Card {
 	@Index private String nombreCarta = "vacio";
 	@Index private String expansion = "vacio";
 	@Index private String rarity = "vacio";
-	private String Img = "vacio";
 	@Index private Double AvgValue = -1.0;
 	@Index private Double LowValue = -1.0;
-	
+	private String Img = "vacio";
+	private String url = "vacio";
+
 	public Card(){}
 	
 	public String getMultiverseCartaId() {
@@ -22,9 +23,7 @@ public class Card {
 	}
 	public void setMultiverseCartaId(String multiverseCartaId) {
 		this.multiverseCartaId = multiverseCartaId;
-		this.Img = "<img class='decoded' alt='http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=" +
-					multiverseCartaId + "&amp;type=card' src='http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=" +
-					multiverseCartaId + "&amp;type=card'>";
+		this.Img = "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=" + multiverseCartaId + "&amp;type=card";
 	}
 	public String getNombreCarta() {
 		return nombreCarta;
@@ -58,5 +57,12 @@ public class Card {
 	}
 	public void setLowValue(Double lowValue) {
 		this.LowValue = lowValue;
+	}
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
 	}
 }

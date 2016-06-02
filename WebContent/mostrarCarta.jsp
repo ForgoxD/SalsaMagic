@@ -9,9 +9,12 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+		<script src="./Scripts/MostrarCapa.js"></script>
+		<link rel="stylesheet" type="text/css" href="./Style/Flotante.css">
 		<title>resultado</title>
 	</head>
 	<body>
+		<div id="flotante"></div>
 		<div class="header">
 		</div>
 		<div class="leftBar">
@@ -27,13 +30,26 @@
 			<div class="muestraCarta">
 				<% if(request.getAttribute("cards") != null){ %>
 				<% ArrayList<Card> cartas = (ArrayList<Card>)request.getAttribute("cards");%>
-				<% for(Card carta: cartas){ %>
-				<p><%=carta.getNombreCarta()%><br/>
-					<%=carta.getExpansion()%></p><br/>
-				<%=carta.getImg()%><br/>
-				<p>el valor medio de la carta es de <%=carta.getAvgValue()%>$</p><br/>
-				<p>el valor a la baja de la carta es de <%=carta.getLowValue()%>$</p><br/>
-				<% } %>
+				<table>
+					<tr>
+						<td>imagen</td>
+						<td>nombre</td>
+						<td>set</td>
+						<td>precio avg</td>
+						<td>precio low</td>
+						<td>enlace a pagina</td>
+					</tr>
+					<% for(Card carta: cartas){ %>
+					<tr>
+						<td><img src="./Style/Img/img.png" onMouseOver="showdiv(event,'<%=carta.getImg()%>')" onMouseOut="hiddenDiv()"/></td>
+						<td><%=carta.getNombreCarta()%></td>
+						<td><%=carta.getExpansion()%></td>
+						<td><%=carta.getAvgValue()%>$</td>
+						<td><%=carta.getLowValue()%>$</td>
+						<td><a href="<%=carta.getUrl()%>">comprar</a></td>
+					</tr>
+					<% } %>
+				</table>
 				<% }else{ %>
 				<p><%=request.getAttribute("error")%></p>
 				<% } %>

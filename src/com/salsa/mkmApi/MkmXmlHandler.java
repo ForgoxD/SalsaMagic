@@ -10,10 +10,12 @@ import com.salsa.card.Card;
 public class MkmXmlHandler extends DefaultHandler{
 	ArrayList<Card> cardList = null;
 	String valor = null;
+	Integer idIdioma = null;
 	String cardName = null;
 	Boolean isName = false;
 	String set = null;
 	String rarity = null;
+	String url = null;
 	Double avgPrice = null;
 	Double lowPrice = null;
 	
@@ -24,22 +26,36 @@ public class MkmXmlHandler extends DefaultHandler{
 	@Override  
 	public void characters(char[] ch, int start, int length) throws SAXException{
 		valor = String.copyValueOf(ch, start, length);
-		
 	}
 	@Override
 	public void endElement(String uri, String localName, String name) throws SAXException{
 		if(localName.equals("productName")){
 			if(isName){
-				cardName = valor;
+				Boolean parentesis = false;
+				String treated = "";
+				for(int i = 0; i < valor.length(); i++){
+		            if(valor.charAt(i) == "(".charAt(0)){
+		            	parentesis = true;
+		            }else if(valor.charAt(i) == ")".charAt(0)){
+		            	parentesis = false;
+		            }
+		            if(!parentesis){
+		            	treated += valor.charAt(i);
+		            }
+		        }
+				cardName = treated.trim();
 			}
 		}
 		if(localName.equals("expansion")){
 			set = valor;
 		}
-		if(localName.equals("idLanguage") && valor == "1"){
-			isName = true;
-		}else{
-			isName = false;
+		if(localName.equals("idLanguage")){
+			idIdioma = new Integer(Integer.parseInt(valor));
+			if(idIdioma == 1){
+				isName = true;
+			}else{
+				isName = false;
+			}
 		}
 		if(localName.equals("rarity")){
 			rarity = valor;
@@ -53,6 +69,9 @@ public class MkmXmlHandler extends DefaultHandler{
 			if(valor != null && valor != ""){
 				lowPrice = Double.parseDouble(valor);
 			}
+		}
+		if(localName.equals("website")){
+			url = "http://es.magiccardmarket.eu" + valor;
 		}
 		if(localName.equals("product")){
 			Card card = new Card();
@@ -70,6 +89,9 @@ public class MkmXmlHandler extends DefaultHandler{
 			}
 			if(lowPrice != null){
 				card.setLowValue(lowPrice);
+			}
+			if(url != null){
+				card.setUrl(url);
 			}
 			cardList.add(card);
 		}

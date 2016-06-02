@@ -13,8 +13,8 @@ public class Pairing {
 		Card actualMkmCard = null;
 		String actualSet = null;
 		Integer distance = 5000;
-		Integer distName;
-		Integer distSet;
+		Integer distName = null;
+		Integer distSet = null;
 		Iterator<Card> iterador = xmlCards.iterator();
 		
 		while(iterador.hasNext()){
@@ -34,7 +34,9 @@ public class Pairing {
 			}
 			actualXmlCard.setAvgValue(actualMkmCard.getAvgValue());
 			actualXmlCard.setLowValue(actualMkmCard.getLowValue());
+			actualXmlCard.setUrl(actualMkmCard.getUrl());
 			paired.add(actualXmlCard);
+			distance = 5000;
 		}
 		return paired;
 	}
