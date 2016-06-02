@@ -16,7 +16,7 @@ import com.salsa.card.Setify;
 import com.salsa.mkmApi.MkmApi;
 import com.salsa.mkmApi.MkmXmlReader;
 import com.salsa.mtgXml.MtgXmlReader;
-import com.salsa.tratatexto.Tratatexto;
+import com.salsa.tratamiento.Tratatexto;
 
 @SuppressWarnings("serial")
 public class SalsaMagicServlet extends HttpServlet {
