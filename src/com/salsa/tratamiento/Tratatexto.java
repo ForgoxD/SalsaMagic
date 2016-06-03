@@ -34,4 +34,11 @@ public class Tratatexto {
         }
         return costs[b.length()];
     }
+	public static String reemplazar(String cadena, String busqueda, String reemplazo){
+		if(busqueda.equals("limited") && !cadena.contains("unlimited")){
+			return cadena.replace(busqueda, reemplazo);
+		}else{
+			return cadena;
+		}
+	}
 }
