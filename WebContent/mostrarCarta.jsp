@@ -11,6 +11,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
 		<script src="./Scripts/MostrarCapa.js"></script>
 		<link rel="stylesheet" type="text/css" href="./Style/Flotante.css">
+		<link href="./Style/style.css" rel="stylesheet" type="text/css" />
 		<title>resultado</title>
 	</head>
 	<body>
@@ -41,7 +42,7 @@
 					</tr>
 					<% for(Card carta: cartas){ %>
 					<tr>
-						<td><img src="./Style/Img/img.png" onMouseOver="showdiv(event,'<%=carta.getImg()%>')" onMouseOut="hiddenDiv()"/></td>
+						<td><img id="icon" src="/Style/images/icon.png" onMouseOver="showdiv(event,'<%=carta.getImg()%>')" onMouseOut="hiddenDiv()"/></td>
 						<td><%=carta.getNombreCarta()%></td>
 						<td><%=carta.getExpansion()%></td>
 						<td><%=carta.getAvgValue()%>$</td>
